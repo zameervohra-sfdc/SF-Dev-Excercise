@@ -1,0 +1,31 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId"
+                access="global">
+    
+    <!-- Attributes -->
+    <aura:attribute name="sObjectRecord" type="Object"/>
+    <!-- Attributes -->
+    
+    <!-- Markup -->
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.recordId}"
+                      fields="OwnerId, Owner.Name, Owner.MediumPhotoUrl"
+                      targetFields="{!v.sObjectRecord}"/>
+    
+    <div class="Record Details"> 
+        <lightning:card title="Record Owner Details" >
+            <center>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_2-of-2">
+                        <img class="circular" src="{!if(not(empty(v.sObjectRecord.Owner.MediumPhotoUrl)), v.sObjectRecord.Owner.MediumPhotoUrl, '/_slds/images/themes/lightning_blue/lightning_blue_profile_avatar_160.png')}"/>
+                    </div>
+                    
+                    <div class="slds-size_2-of-2">
+                        <ui:outputText title="Owner Name" value="{!v.sObjectRecord.Owner.Name}" />
+                    </div>
+                </div>
+            </center>
+        </lightning:card>
+    </div>
+    <!-- Markup -->
+    
+</aura:component>
